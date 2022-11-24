@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useState } from 'react';
 import './App.css';
 import Menu from './Menu';
@@ -14,6 +14,7 @@ export default function Header() {
 	const [name, setName] = useState('');
 	const [sign_in_up_model, setsignin_up_model] = useState('');
 	const [cartData, dispatch] = CartContextValue()
+
 	const signUpApi = () => {
 		if (mobile === "") {
 			alert("Mobile should not be empty");
@@ -61,7 +62,7 @@ export default function Header() {
 			}, error => {
 				alert(error.message);
 			}
-			)
+			).catch(err => console.log(err))
 	}
 	const showCartList = () => {
 
@@ -108,22 +109,18 @@ export default function Header() {
 					<div className="w3l_logo">
 						<h1><a href="#">Electronic Store<span>Your stores. Your place.</span></a></h1>
 					</div>
-					<div className="search">
-						<input className="search_box" type="checkbox" id="search_box" />
-						<label onClick={() => setShowCartPopup(true)} className="icon-search" ><span className="glyphicon glyphicon-search" aria-hidden="true"></span></label>
-						<div className="search_form">
-							<form action="#" method="post">
-								<input type="text" name="Search" placeholder="Search..." />
-								<input type="submit" value="Send" />
-							</form>
-						</div>
-
-					</div>
 					
+				
 					<div className="cart cart box_1">
 						<button onClick={() => setShowCartPopup(true)} className="w3view-cart" type="submit" name="submit" value="">
 							<i className="fa fa-cart-arrow-down" aria-hidden="true"></i>
 							<span className="cart_count">{cartData.cartItems.length}</span>
+						</button>
+					</div>
+
+					<div className="cart cart box_2">
+						<button  className="w3view-cart1 " type="submit" name="LogOut" value="LogOut">
+							LogOut
 						</button>
 					</div>
 				</div>

@@ -1,6 +1,6 @@
+import React from 'react';
 import './App.css';
 import Home from './Home';
-
 import Footer  from './Footer';
 import Product from './Product'
 import CheckoutCart from './CheckoutCart';

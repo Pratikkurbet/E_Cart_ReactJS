@@ -1,6 +1,7 @@
-
+import React from 'react';
 import { useEffect, useState } from 'react';
 import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Menu from './Menu';
 import {httpPost,httpPostwithToken} from './HttpConfig';
 import {CartContextValue} from './ContextProvider';
@@ -187,34 +188,29 @@ function Home() {
   return (
     <div>
    	
+	
+
 
   <div className="banner">
 		<div className="container">
 			<h3>Electronic Store, <span>Special Offers</span></h3>
 		</div>
 	</div>
+	
+
 
 	<div className="banner-bottom">
 		<div className="container">
-			<div className="col-md-5 wthree_banner_bottom_left">
-				<div className="video-img">
-					<a className="play-icon popup-with-zoom-anim" href="#small-dialog">
-						<span className="glyphicon glyphicon-expand" aria-hidden="true"></span>
-					</a>
-				</div> 
-			</div>
-      <div className="col-md-7 wthree_banner_bottom_right">
+		      <div className="col-md-12 wthree_banner_bottom_right">
 				<div className="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" className="nav nav-tabs" role="tablist">
 						{
 							categoryList.map((category)=>(
 								<li  onClick={(e)=>getProductsByCategory(category.id)} key={category.id} role="presentation">
-									<a href="javascript:void(0)">{category.name}</a>
+									<a href="javascript:void(0)">{category.name}<span><i class="fa fa-trash p-2" aria-hidden="true"></i></span></a>
 								</li>
 							))
 						}
-						
-						
 					</ul>
 					<div id="myTabContent" className="tab-content">
 						<div role="tabpanel" className="tab-pane fade active in" id="home" aria-labelledby="home-tab">
