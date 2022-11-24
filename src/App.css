@@ -52,8 +52,25 @@
   padding: 10px;
   border: 1px solid #000;
 }
-.cart .cart_count{
+.w3view-cart{
+  background: #ff5063;
+    border: none;
+    border-radius: 7%;
+    width: 50px;
+    height: 44px;
+    text-align: center;
+    outline: none;
+    position: absolute;
+    right: 14%;
+    z-index: 999;
+}
+#w3lssbmincart {
+  display: none;
   position: absolute;
+  width: 420px;
+}
+.cart .cart_count{
+    position: absolute;
     right: 0;
     top: 0;
     /* font-size: 1.5rem; */
