@@ -135,8 +135,6 @@ function Home() {
 						getProductsByCategory(response[0].id);
 					} else {
 						alert("Error in category api..")
-						//ReactDOM.render(categoryPopup,document.getElementById('togglable-tabs'));
-						//<div dangerouslySetInnerHTML={}></div>
 					}
 				})
 			})
@@ -151,6 +149,7 @@ function Home() {
 				res.json().then(response => {
 					if (res.ok) {
 						if (response.length > 0) {
+							console.log(response)
 							setProductList(response)
 						} else {
 							alert("No product found..");
@@ -223,7 +222,6 @@ function Home() {
 									<div className="agile_ecommerce_tabs">
 										{
 											productList.map((product) => (
-
 												<div className="col-md-4 agile_ecommerce_tab_left">
 													<div className="hs-wrapper">
 														<img src="../assets/images/3.jpg" alt=" " className="img-responsive" />
@@ -240,8 +238,6 @@ function Home() {
 													</div>
 													<h5>
 														<Link to={"/product/" + product.id}>{product.name}</Link>
-
-
 													</h5>
 													<h5><a onClick={() => addCartApi(product)} href="javascript:void(0)">Add Cart</a></h5>
 													<div className="simpleCart_shelfItem">

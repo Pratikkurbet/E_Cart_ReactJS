@@ -44,10 +44,9 @@ export default function Header() {
 		}
 
 		httpPost("signup/user", jsonOBj)
-			.then(res => res.json()).then(data => console.log(data))
+			.then(res => res.json())
 			.then((res) => {
 				if (res.hasOwnProperty('id')) {
-					window.location.reload();
 					alert("Registration success.please sign in");
 					setMobile('');
 					setPassword('');
