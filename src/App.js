@@ -17,7 +17,6 @@ function App() {
   return (
     <ContextProvider reducer={reducer} cartState={cartState}>
     <div>
-     
        <Router>
        <Header></Header>
        <Route exact path="/product/:id">

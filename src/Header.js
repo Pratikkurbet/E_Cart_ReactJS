@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Menu from './Menu';
 import { httpPost, httpPostwithToken } from './HttpConfig';
 import { CartContextValue } from './ContextProvider';
@@ -46,6 +47,7 @@ export default function Header() {
 			.then(res => res.json()).then(data => console.log(data))
 			.then((res) => {
 				if (res.hasOwnProperty('id')) {
+					window.location.reload();
 					alert("Registration success.please sign in");
 					setMobile('');
 					setPassword('');
@@ -56,17 +58,12 @@ export default function Header() {
 				} else {
 					alert(res['message']);
 				}
-
-				//console.log(res);
-
 			}, error => {
 				alert(error.message);
 			}
 			).catch(err => console.log(err))
 	}
-	const showCartList = () => {
-
-	}
+	
 	const getTotalAmount = () => {
 		return cartData.cartItems.reduce((prevValue, currentValue) => prevValue + currentValue.price, 0);
 	}
@@ -87,6 +84,7 @@ export default function Header() {
 					localStorage.setItem("token", res['token']);//token
 					localStorage.setItem("user_id", res['user_profile_details']['user_id']);//user_id
 					setsignin_up_model('')//hide the sign up model.
+					window.location.reload();
 					//getCategory();
 				} else {
 					alert(res['message']);
@@ -99,6 +97,13 @@ export default function Header() {
 			}
 			)
 	}
+
+	const LogOut = () => {
+		{
+			localStorage.clear();
+			window.location.reload();
+		}
+	}
 	return (
 		<>
 			<div className="header" id="home1">
@@ -109,8 +114,8 @@ export default function Header() {
 					<div className="w3l_logo">
 						<h1><a href="#">Electronic Store<span>Your stores. Your place.</span></a></h1>
 					</div>
-					
-				
+
+
 					<div className="cart cart box_1">
 						<button onClick={() => setShowCartPopup(true)} className="w3view-cart" type="submit" name="submit" value="">
 							<i className="fa fa-cart-arrow-down" aria-hidden="true"></i>
@@ -119,9 +124,9 @@ export default function Header() {
 					</div>
 
 					<div className="cart cart box_2">
-						<button  className="w3view-cart1 " type="submit" name="LogOut" value="LogOut">
+						<button className="w3view-cart1" onClick={() => LogOut()} type="submit" name="LogOut" value="LogOut">
 							LogOut
-						</button>
+						</button> 
 					</div>
 				</div>
 			</div>
@@ -164,25 +169,24 @@ export default function Header() {
 				<div className="modal-dialog modal-lg">
 					<div className="modal-content">
 						<div className="modal-header">
-							<button onClick={() => setsignin_up_model('')} type="button" className="close" data-dismiss="modal" aria-hidden="true">
-								&times;</button>
-							<h4 className="modal-title" id="myModalLabel">
-								{(sign_in_up_model === 'sign-in') ? "Sign In" : "Register"}
+						<h4 className="modal-title" id="myModalLabel">
+								{(sign_in_up_model === 'sign-in') ? "User Login" : "User Register"}
 							</h4>
+							<button onClick={() => setsignin_up_model('')} type="button" className="btn btn-sm" data-dismiss="modal" aria-hidden="true">
+								&times;</button>
 						</div>
 						<div className="modal-body  modal-body-sub">
 							<div className="row">
-								<div className="col-md-8 modal_body_left modal_body_left1">
+								<div className="col-md-6 modal_body_left modal_body_left1">
 									<div className="sap_tabs">
 										<div id="horizontalTab">
 											<ul>
-												<li onClick={() => setsignin_up_model('sign-in')} className="resp-tab-item" aria-controls="tab_item-0"><span>Sign in</span></li>
-												<li onClick={() => setsignin_up_model('sign-up')} className="resp-tab-item" aria-controls="tab_item-1"><span>Sign up</span></li>
+												<li onClick={() => setsignin_up_model('sign-in')} className="resp-tab-item" aria-controls="tab_item-0"><span>Login</span></li>
+												<li onClick={() => setsignin_up_model('sign-up')} className="resp-tab-item" aria-controls="tab_item-1"><span>Register</span></li>
 											</ul>
 											<div className="tab-1 sign-in resp-tab-content" aria-labelledby="tab_item-0">
 												<div className="facts">
 													<div className="register">
-
 														<form action="#" method="post">
 															<input onChange={(e) => setMobile(e.target.value)} name="Mobile" placeholder="Enter Mobile" type="text" required="" />
 															<input onChange={(e) => setPassword(e.target.value)} name="Password" placeholder="Password" type="password" required="" />
@@ -215,21 +219,6 @@ export default function Header() {
 
 
 								</div>
-								{/* <div className="col-md-4 modal_body_right modal_body_right1">
-							<div className="row text-center sign-with">
-								<div className="col-md-12">
-									<h3 className="other-nw">Sign in with</h3>
-								</div>
-								<div className="col-md-12">
-									<ul className="social">
-										<li className="social_facebook"><a href="#" className="entypo-facebook"></a></li>
-										<li className="social_dribbble"><a href="#" className="entypo-dribbble"></a></li>
-										<li className="social_twitter"><a href="#" className="entypo-twitter"></a></li>
-										<li className="social_behance"><a href="#" className="entypo-behance"></a></li>
-									</ul>
-								</div>
-							</div>
-						</div> */}
 							</div>
 						</div>
 					</div>
