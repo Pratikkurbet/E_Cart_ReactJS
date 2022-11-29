@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Home from './Home';
 import Footer  from './Footer';
+
 import Product from './Product'
 import CheckoutCart from './CheckoutCart';
 import Header from './Header';
@@ -12,6 +13,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import GetProduct from './GetProduct';
+import Slider from './Slider';
 
 function App() {
   return (
@@ -26,7 +29,8 @@ function App() {
          <CheckoutCart></CheckoutCart>
       </Route>
        <Route exact path="/">
-         <Home></Home>
+            <Home></Home>  
+         <GetProduct/>
       </Route>      
       </Router>
       <Footer></Footer>
