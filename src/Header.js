@@ -120,33 +120,31 @@ export default function Header() {
   return (
     <>
       <Navbar expand="lg" variant="light" bg="primary">
-	  <div className="header" id="home1">
-        <div className="container">
-          <div className="w3l_login">
-            <a
-              href="javascript:void(0)"
-              onClick={() => setsignin_up_model("sign-in")}
-              data-toggle="modal"
-              data-target="#myModal88"
-            >
-              <span
-                className="glyphicon glyphicon-user"
-                aria-hidden="true" 
-              ></span>
-            </a>
-          </div>
+        <div className="header" id="home1">
+          <div className="container">
+            <div className="w3l_login">
+              <a
+                href="javascript:void(0)"
+                onClick={() => setsignin_up_model("sign-in")}
+                data-toggle="modal"
+                data-target="#myModal88"
+              >
+                <span
+                  className="glyphicon glyphicon-user"
+                  aria-hidden="true"
+                ></span>
+              </a>
+            </div>
 
-          {/* <div className="w3l_logo">
+            {/* <div className="w3l_logo">
             <h1>
               <a href="#">
                 Electronic Store<span>Your stores. Your place.</span>
               </a>
             </h1>
           </div> */}
-
-         
+          </div>
         </div>
-      </div>
         <Container>
           <Navbar.Brand href="#"></Navbar.Brand>
           <div className="cart cart box_1">
@@ -162,11 +160,11 @@ export default function Header() {
             </button>
           </div>
         </Container>
-		<Button variant="light" className="me-3" onClick={() => LogOut()}>
-            Logout
-          </Button>{" "}
+        <Button variant="light" className="me-3" onClick={() => LogOut()}>
+          Logout
+        </Button>
       </Navbar>
-      
+
       <Menu></Menu>
       <div className={showCartPopup ? "active" : ""} id="w3lssbmincart">
         <Link to={"/checkoutcart/"}>Checkout Cart</Link>
@@ -215,6 +213,9 @@ export default function Header() {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
+              <h4 className="modal-title" id="myModalLabel">
+                {sign_in_up_model === "sign-in" ? "Login" : "Register"}
+              </h4>
               <button
                 onClick={() => setsignin_up_model("")}
                 type="button"
@@ -224,9 +225,6 @@ export default function Header() {
               >
                 &times;
               </button>
-              <h4 className="modal-title" id="myModalLabel">
-                {sign_in_up_model === "sign-in" ? "Sign In" : "Register"}
-              </h4>
             </div>
             <div className="modal-body  modal-body-sub">
               <div className="row">
@@ -239,14 +237,14 @@ export default function Header() {
                           className="resp-tab-item"
                           aria-controls="tab_item-0"
                         >
-                          <span>Sign in</span>
+                          <span>Login</span>
                         </li>
                         <li
                           onClick={() => setsignin_up_model("sign-up")}
                           className="resp-tab-item"
                           aria-controls="tab_item-1"
                         >
-                          <span>Sign up</span>
+                          <span>Register</span>
                         </li>
                       </ul>
                       <div
@@ -339,21 +337,6 @@ export default function Header() {
                     </div>
                   </div>
                 </div>
-                {/* <div className="col-md-4 modal_body_right modal_body_right1">
-							<div className="row text-center sign-with">
-								<div className="col-md-12">
-									<h3 className="other-nw">Sign in with</h3>
-								</div>
-								<div className="col-md-12">
-									<ul className="social">
-										<li className="social_facebook"><a href="#" className="entypo-facebook"></a></li>
-										<li className="social_dribbble"><a href="#" className="entypo-dribbble"></a></li>
-										<li className="social_twitter"><a href="#" className="entypo-twitter"></a></li>
-										<li className="social_behance"><a href="#" className="entypo-behance"></a></li>
-									</ul>
-								</div>
-							</div>
-						</div> */}
               </div>
             </div>
           </div>
@@ -362,5 +345,3 @@ export default function Header() {
     </>
   );
 }
-
-

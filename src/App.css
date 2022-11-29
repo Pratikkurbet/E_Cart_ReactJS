@@ -43,7 +43,22 @@
 .w3l_login
 {
   background-color: white;
-  margin-top: -23px;
+  margin-top: -30px;
+}
+.navbar
+{
+  height: 55px;
+}
+.w3l_login a
+{
+  font-size: .8em;
+    color: #3c43a4;
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-align: center;
+    border: none;
+    margin-top: 0;
 }
 #w3lssbmincart.check-out-cart-wrap .sbmincart-subtotal{
   margin: 10px 0;

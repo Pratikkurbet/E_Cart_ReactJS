@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { httpPost, httpPostwithToken } from "./HttpConfig";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Carousel from 'react-bootstrap/Carousel';
 import { CartContextValue } from './ContextProvider';
 
 function GetProduct() { 
@@ -113,10 +114,13 @@ function GetProduct() {
           </li>
         ))}
       </ul>
-    </div><div className='container mt-4'>
+    </div>
+
+
+    <div className='container mt-4 nav nav-tabs'>
         {productList.map((product) => (
-          <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src='../assets/images/3.jpg' />
+          <Card style={{ width: '18rem' }} className="me-4">
+            <Card.Img variant="top" src={`../assets/images/${product.id}.jpg`} />
             <Card.Body>
               <Card.Title>{product.name}</Card.Title>
               <Card.Text>
@@ -124,7 +128,6 @@ function GetProduct() {
               </Card.Text>
               <Button variant="primary" onClick={() => addCartApi(product)}>Add to Cart</Button>
             </Card.Body>
-
           </Card>
         ))}
       </div></>
