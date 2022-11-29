@@ -6,6 +6,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { httpPost, httpPostwithToken } from './HttpConfig';
 import { CartContextValue } from './ContextProvider';
 import { Link } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
 function Home() {
 	// const [sign_in_up_model,setsignin_up_model] = useState('')
 	// const[mobile,setMobile] = useState('');
@@ -132,11 +133,11 @@ function Home() {
 				res.json().then(response => {
 					if (res.ok) {
 						setCategoryList(response);
+						console.log(response[0].id)
 						getProductsByCategory(response[0].id);
 					} else {
 						alert("Error in category api..")
-						//ReactDOM.render(categoryPopup,document.getElementById('togglable-tabs'));
-						//<div dangerouslySetInnerHTML={}></div>
+						//ReactDOM.render(<Alert id='categoryAPI' variant='danger'>Error in category api!!</Alert>,document.getElementById('root'));
 					}
 				})
 			})
@@ -151,13 +152,16 @@ function Home() {
 				res.json().then(response => {
 					if (res.ok) {
 						if (response.length > 0) {
+							console.log(response)
 							setProductList(response)
 						} else {
-							alert("No product found..");
+							//alert("No product found..");
+							ReactDOM.render(<Alert id='categoryAlert' variant='danger'>No Products Found!!</Alert>,document.getElementById('categoryAlert'));
 						}
 					} else {
 						setProductList([])
 						alert("No product found..");
+						//ReactDOM.render(<Alert id='categoryAlert' variant='danger'>No Products Found!!</Alert>,document.getElementById('categoryAlert'));
 					}
 				})
 			}, error => {
@@ -213,7 +217,7 @@ function Home() {
 								{
 									categoryList.map((category) => (
 										<li onClick={(e) => getProductsByCategory(category.id)} key={category.id} role="presentation">
-											<a href="javascript:void(0)">{category.name}<span><i class="fa fa-trash p-2" aria-hidden="true"></i></span></a>
+											<a href="javascript:void(0)">{category.name}</a>
 										</li>
 									))
 								}
@@ -223,7 +227,6 @@ function Home() {
 									<div className="agile_ecommerce_tabs">
 										{
 											productList.map((product) => (
-
 												<div className="col-md-4 agile_ecommerce_tab_left">
 													<div className="hs-wrapper">
 														<img src="../assets/images/3.jpg" alt=" " className="img-responsive" />
@@ -251,6 +254,7 @@ function Home() {
 											))
 										}
 
+										
 										{/* <div className="col-md-4 agile_ecommerce_tab_left">
 									<div className="hs-wrapper">
 										<img src="../assets/images/4.jpg" alt=" " className="img-responsive" />

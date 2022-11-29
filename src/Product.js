@@ -6,13 +6,13 @@ import {httpPost,httpPostwithToken} from './HttpConfig';
 
 export default function Product() {
     return (
-        <div class="single">
-		<div class="container">
-			<div class="col-md-4 single-left">
-				<div class="flexslider">
-					<ul class="slides">
+        <div className="single">
+		<div className="container">
+			<div className="col-md-4 single-left">
+				<div className="flexslider">
+					<ul className="slides">
 						<li data-thumb="images/a.jpg">
-							<div class="thumb-image"> <img src="../assets/images/a.jpg" data-imagezoom="true" class="img-responsive" alt=""/> </div>
+							<div className="thumb-image"> <img src="../assets/images/a.jpg" data-imagezoom="true" className="img-responsive" alt=""/> </div>
 						</li>
 						
 					</ul>
@@ -20,10 +20,10 @@ export default function Product() {
                     </div>
                
 
-        <div class="col-md-8 single-right">
+        <div className="col-md-8 single-right">
 				<h3>The Best 3GB RAM Mobile Phone</h3>
-				<div class="rating1">
-					<span class="starRating">
+				<div className="rating1">
+					<span className="starRating">
 						<input id="rating5" type="radio" name="rating" value="5"/>
 						<label for="rating5">5</label>
 						<input id="rating4" type="radio" name="rating" value="4"/>
@@ -36,7 +36,7 @@ export default function Product() {
 						<label for="rating1">1</label>
 					</span>
 				</div>
-				<div class="description">
+				<div className="description">
 					<h5><i>Description</i></h5>
 					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
 						eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
@@ -46,11 +46,11 @@ export default function Product() {
 				</div>
 			
 				
-				<div class="simpleCart_shelfItem">
-					<p><i class="item_price">$450</i></p>
+				<div className="simpleCart_shelfItem">
+					<p><i className="item_price">$450</i></p>
 					
 						  
-						<button type="submit" class="w3ls-cart">Add to cart</button>
+						<button type="submit" className="w3ls-cart">Add to cart</button>
 				
 				</div> 
 			</div>
