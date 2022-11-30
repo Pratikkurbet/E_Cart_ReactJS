@@ -17,6 +17,7 @@ export default function CheckoutCart() {
     "9",
     "10",
   ]);
+  const [cartNum, setCartNum]=useState();
   let history = useHistory();
   const getTotalAmount = () => {
     return cartData.cartItems.reduce(
@@ -28,11 +29,14 @@ export default function CheckoutCart() {
     // console.log(cartObj,e.target.value);
     // cartObj.qty
     let price = cartObj.price * e.target.value;
-    let obj = { cartId: cartObj.id, qty: e.target.value, price: price };
+    let obj = {
+      cartId: cartObj.id,
+      qty: e.target.value,
+      price: price,
+    };
     httpPostwithToken("addtocart/updateQtyForCart", obj)
       .then((res) => {
         res.json().then((data) => {
-			console.log(data);
           if (res.ok) {
             dispatch({
               type: "add_cart",
@@ -49,6 +53,19 @@ export default function CheckoutCart() {
         //alert(error.message);
       });
   };
+
+  const clearCartData = () => {
+    console.log("hello");
+    let obj = {
+      cartId: 18,//cartId should be dynamic
+      userId: localStorage.getItem("user_id"),
+    };
+    httpPostwithToken("addtocart/removeProductFromCart", obj).then((res) =>
+      res.json()
+    );
+    window.location.reload();
+  };
+
   const checkout_order = () => {
     let totalAmount = getTotalAmount();
     let obj = {
@@ -69,10 +86,7 @@ export default function CheckoutCart() {
       })
       .catch(function (res) {
         console.log("Error ", res);
-        //alert(error.message);
       });
-
-    const clearCartData = () => {};
   };
   return (
     <div className="typo codes icons main-grid-border">
@@ -109,6 +123,7 @@ export default function CheckoutCart() {
                       type="button"
                       className="sbmincart-remove"
                       data-sbmincart-idx="0"
+                      onClick={(cartObj) => clearCartData(setCartNum(cartObj.id))}
                     >
                       ×
                     </button>

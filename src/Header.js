@@ -18,6 +18,7 @@ export default function Header() {
   const [name, setName] = useState("");
   const [sign_in_up_model, setsignin_up_model] = useState("");
   const [cartData, dispatch] = CartContextValue();
+  const [cartNum, setCartNum]=useState();
 
   const signUpApi = () => {
     if (mobile === "") {
@@ -62,8 +63,6 @@ export default function Header() {
           } else {
             alert(res["message"]);
           }
-
-          //console.log(res);
         },
         (error) => {
           alert(error.message);
@@ -71,7 +70,6 @@ export default function Header() {
       )
       .catch((err) => console.log(err));
   };
-  const showCartList = () => {};
   const getTotalAmount = () => {
     return cartData.cartItems.reduce(
       (prevValue, currentValue) => prevValue + currentValue.price,
@@ -99,6 +97,7 @@ export default function Header() {
               res["user_profile_details"]["user_id"]
             ); //user_id
             setsignin_up_model(""); //hide the sign up model.
+            window.location.reload();
             //getCategory();
           } else {
             alert(res["message"]);
@@ -110,6 +109,18 @@ export default function Header() {
           alert(error.message);
         }
       );
+  };
+  
+  const clearCartData = () => {
+    console.log("hello");
+    let obj = {
+      cartId: 17,//cartId should be dynamic
+      userId: localStorage.getItem("user_id"),
+    };
+    httpPostwithToken("addtocart/removeProductFromCart", obj).then((res) =>
+      res.json()
+    );
+    window.location.reload();
   };
   const LogOut = () => {
     {
@@ -135,7 +146,7 @@ export default function Header() {
                 ></span>
               </a>
             </div>
-
+            {/* <h1>E_Cart App</h1> */}
             {/* <div className="w3l_logo">
             <h1>
               <a href="#">
@@ -193,6 +204,7 @@ export default function Header() {
                   type="button"
                   className="sbmincart-remove"
                   data-sbmincart-idx="0"
+                  onClick={(cartObj) => clearCartData(setCartNum(cartObj.id))}
                 >
                   ×
                 </button>
