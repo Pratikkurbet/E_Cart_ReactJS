@@ -111,10 +111,9 @@ export default function Header() {
       );
   };
   
-  const clearCartData = () => {
-    console.log("hello");
+  const clearCartData = (id) => {
     let obj = {
-      cartId: 17,//cartId should be dynamic
+      cartId: id,//cartId should be dynamic
       userId: localStorage.getItem("user_id"),
     };
     httpPostwithToken("addtocart/removeProductFromCart", obj).then((res) =>
@@ -204,7 +203,7 @@ export default function Header() {
                   type="button"
                   className="sbmincart-remove"
                   data-sbmincart-idx="0"
-                  onClick={(cartObj) => clearCartData(setCartNum(cartObj.id))}
+                  onClick={() => clearCartData(cartObj.id)}
                 >
                   ×
                 </button>
